@@ -26,18 +26,18 @@ services:
     command: "php artisan serve --host=0.0.0.0 --port=8080"
   frontend:
     container_name: frontend
-#    image: node:latest
-    build:
-      context: ./frontend
+    image: node:latest
+#    build:
+#      context: ./frontend
 #    user: ${UID}:${UID}
-#    working_dir: /home/node/app
-#    expose:
-#      - 8080
+    working_dir: /home/node/app
+    expose:
+      - 8080
     ports:
       - "8081:8080"
     volumes:
       - ./frontend:/home/node/app
     environment:
       NODE_ENV: development
-      command: "npm run dev -- --port 8080"
+    command: "npm run dev -- --port 8080 --host 0.0.0.0"
     tty: true
