@@ -7,6 +7,7 @@ services:
       - ./config/nginx/config.conf:/etc/nginx/conf.d/default.conf
     ports:
       - 80:80
+      - 8080:8080
 
   backend:
     container_name: backend
@@ -34,5 +35,6 @@ services:
       - ./frontend:/home/node/app
     environment:
       NODE_ENV: development
+#    command: "npm run dev -- --port 8080 --host 0.0.0.0"
     command: "npm run dev -- --port 8080 --host 0.0.0.0"
     tty: true
