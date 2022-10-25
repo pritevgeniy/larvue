@@ -38,3 +38,14 @@ services:
 #    command: "npm run dev -- --port 8080 --host 0.0.0.0"
     command: "npm run dev -- --port 8080 --host 0.0.0.0"
     tty: true
+  postgres:
+    image: postgres:14.3
+    container_name: postgres
+    environment:
+      POSTGRES_DB: "larvue"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./.docker/conf/postgres/:/docker-entrypoint-initdb.d/

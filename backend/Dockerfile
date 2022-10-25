@@ -1,6 +1,7 @@
 FROM php:fpm-alpine
 RUN apk add --no-cache $PHPIZE_DEPS oniguruma-dev libzip-dev curl-dev \
-    && docker-php-ext-install pdo_mysql mbstring zip curl \
+    libpq-dev \
+    && docker-php-ext-install pdo_mysql mbstring zip curl pdo pdo_pgsql pgsql \
     && pecl install xdebug redis \
     && docker-php-ext-enable xdebug redis
 RUN mkdir /app
