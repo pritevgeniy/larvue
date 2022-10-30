@@ -13,8 +13,7 @@ services:
     container_name: backend
     build:
       context: ./backend
-#    user: ${UID}:${UID}
-
+    user: ${UID}:${UID}
     volumes:
       - ./backend:/app
       - ./etc/php:/usr/local/etc/php/local.conf.d/
@@ -27,7 +26,7 @@ services:
     image: node:latest
 #    build:
 #      context: ./frontend
-#    user: ${UID}:${UID}
+    user: ${UID}:${UID}
     working_dir: /home/node/app
     ports:
       - "8081:8080"
@@ -41,6 +40,7 @@ services:
   postgres:
     image: postgres:14.3
     container_name: postgres
+#    user: ${UID}:${UID}
     environment:
       POSTGRES_DB: "larvue"
       POSTGRES_USER: "postgres"

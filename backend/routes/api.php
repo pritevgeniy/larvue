@@ -17,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user', function (Request $request) {
     return response()->json('Hello!');
 });
+Route::get('/data', [\App\Http\Controllers\DataController::class, 'index']);
