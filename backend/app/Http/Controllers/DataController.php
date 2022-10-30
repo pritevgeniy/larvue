@@ -12,7 +12,11 @@ class DataController extends Controller
 {
     public function index(DataRequest $request): JsonResponse
     {
-        $data = Data::query()->paginate(100);
+        $data = Data::query()
+            ->where('json->date', '>', '2011-01-01')
+            ->where('json->date', '<', '2022-01-01')
+            ->where('json->text', 'like', '%ali%')
+            ->paginate(100);
         return response()->json($data);
     }
 

@@ -49,3 +49,21 @@ services:
       - "5432:5432"
     volumes:
       - ./.docker/conf/postgres/:/docker-entrypoint-initdb.d/
+  ch_server:
+#    user: ${UID}:${UID}
+    container_name: ch_server
+    image: yandex/clickhouse-server
+    ports:
+      - "8123:8123"
+    volumes:
+      - ./.docker/clickhouse/data/:/var/lib/clickhouse
+      - ./config/clickhouse/clickhouse_config.xml:/etc/clickhouse-server/config.xml
+      - ./config/clickhouse/users.xml:/etc/clickhouse-server/users.xml
+#  ch_client:
+##    user: ${UID}:${UID}
+#    container_name: ch_client
+#    image: yandex/clickhouse-client
+#    entrypoint:
+#      - /bin/sleep
+#    command:
+#      - infinity
